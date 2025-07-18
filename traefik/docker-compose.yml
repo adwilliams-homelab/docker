@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  traefik:
+    image: traefik:v3.0
+    container_name: traefik
+    restart: unless-stopped
+    command:
+      - "--providers.docker"
+      - "--providers.file.filename=/dynamic.yml"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./traefik.yml:/traefik.yml:ro"
+      - "./dynamic.yml:/dynamic.yml:ro"
+      - "./certs:/certs:ro"
+      - "./letsencrypt:/letsencrypt"
+      - "./cf_api_token.txt:/cf_api_token.txt:ro"
+    environment:
+      - CF_DNS_API_TOKEN_FILE=/cf_api_token.txt
+    networks:
+      - web
+
+networks:
+  web:
+    external: true

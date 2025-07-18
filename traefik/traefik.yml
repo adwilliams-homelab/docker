@@ -1,0 +1,28 @@
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
+
+api:
+  dashboard: true
+  insecure: false  # Don't expose the dashboard on HTTP
+
+certificatesResolvers:
+  cloudflare:
+    acme:
+      email: adwswind@hotmail.com
+      storage: /letsencrypt/acme.json
+      dnsChallenge:
+        provider: cloudflare
+        delayBeforeCheck: 0
+
+providers:
+  docker:
+    exposedByDefault: false
+  file:
+    filename: /dynamic.yml
+    watch: true
+
+log:
+  level: INFO

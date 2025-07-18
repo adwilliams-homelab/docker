@@ -1,0 +1,26 @@
+# Sensitive files
+cf_api_token.txt
+traefik/letsencrypt/acme.json
+
+# Optional: Ignore all certificate files if you store certs manually
+traefik/certs/
+!traefik/certs/.gitkeep  # if you want to keep the folder
+
+# Editor/OS/system files
+*.swp
+*.swo
+*.bak
+*.tmp
+.DS_Store
+Thumbs.db
+
+# VS Code settings (optional)
+.vscode/
+
+# Logs and temp
+*.log
+*.pid
+
+# Ignore system backup and history files (optional, up to you)
+.bash_history
+.sudo_as_admin_successful

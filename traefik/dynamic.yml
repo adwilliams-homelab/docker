@@ -1,0 +1,15 @@
+http:
+  routers:
+    dashboard:
+      rule: "Host(`dashboard.solihull.store`)"
+      service: api@internal
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: cloudflare
+
+  middlewares:
+    secured:
+      headers:
+        sslRedirect: true
+        stsSeconds: 31536000
